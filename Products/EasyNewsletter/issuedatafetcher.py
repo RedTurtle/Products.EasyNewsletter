@@ -109,7 +109,11 @@ class DefaultIssueDataFetcher(object):
         return fullname
 
     def _salutation(self, receiver):
-        return receiver.get('salutation') or u''
+        enl_salutation = self._enl.salutations[0] or u''
+        if enl_salutation:
+            enl_salutation = enl_salutation.split('|')[0]
+        return receiver.get('salutation') or enl_salutation
+#        return receiver.get('salutation') or u''
 
     def _subscriber_salutation(self, receiver):
         return u'{0} {1}'.format(

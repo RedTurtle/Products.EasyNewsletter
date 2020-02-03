@@ -362,7 +362,6 @@ class ENLIssue(ATTopic, atapi.BaseContent):
         enl = self.getNewsletter()
         result = {}
         lang = self.Language() or 'en'
-
         for line in enl.getSalutations():
             if "|" not in line:
                 continue
@@ -380,7 +379,10 @@ class ENLIssue(ATTopic, atapi.BaseContent):
             test_receiver = request.get('test_receiver', '')
             if test_receiver == "":
                 test_receiver = enl.getTestEmail()
-            salutation = salutation_mappings.get('default', '')
+            salutation_key = 'default'
+            if 'default' not in salutation_mappings.keys():
+                salutation_key = salutation_mappings.keys()[0]
+            salutation = salutation_mappings.get(salutation_key)
             receivers = [{
                 'email': test_receiver,
                 'fullname': 'Test Member',

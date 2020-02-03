@@ -19,8 +19,8 @@ CATALOGNAME="EasyNewsletter"
 LANGUAGES="en de es fr it nl pt_BR"
 
 # Location of i18ndude
-I18NDUDE="../../bin/i18ndude"
-
+#I18NDUDE="../../bin/i18ndude"
+I18NDUDE="../../../../bin/i18ndude"
 
 # Create locales folder structure for languages
 install -d locales

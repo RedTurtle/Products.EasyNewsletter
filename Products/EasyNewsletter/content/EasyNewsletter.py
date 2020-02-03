@@ -113,7 +113,8 @@ schema = atapi.Schema((
 
     atapi.LinesField(
         'salutations',
-        default=("mr|Dear Mr.", "ms|Dear Ms.", "default|Dear"),
+        default=("Gentile|Gentile"),
+        required=True,
         schemata='personalization',
         widget=atapi.LinesWidget(
             label=_(
@@ -132,7 +133,7 @@ schema = atapi.Schema((
 
     atapi.StringField(
         'fullname_fallback',
-        default="Sir or Madam",
+        default="Gentile",
         schemata='personalization',
         widget=atapi.StringWidget(
             label=_(
@@ -148,7 +149,7 @@ schema = atapi.Schema((
 
     atapi.StringField(
         'unsubscribe_string',
-        default="Click here to unsubscribe",
+        default="Clicca qui per cancellare la tua iscrizione alla newsletter",
         schemata='personalization',
         widget=atapi.StringWidget(
             label=_(
@@ -222,7 +223,7 @@ schema = atapi.Schema((
         schemata='personalization',
         allowable_content_types=(
             'text/html', 'text/x-plone-outputfilters-html'),
-        default="<h1>Community Newsletter for Plone</h1>\n{{UNSUBSCRIBE}}",
+        default="<h1>Newsletter</h1>\n{{UNSUBSCRIBE}}",
         default_output_type='text/html',
         widget=RichTextWidget(
             rows=10,
