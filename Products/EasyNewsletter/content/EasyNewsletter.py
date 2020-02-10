@@ -655,7 +655,7 @@ class EasyNewsletter(ATTopic, atapi.BaseFolder):
             for id, property in member_properties.items():
                 if config.EMAIL_RE.findall(property['email']):
                     results.append(
-                        (id, property['fullname'] + ' - ' + property['email']))
+                        (id, property['fullname'] or '' + ' - ' + property['email'] or ''))
                 else:
                     log.error(
                         "Property email: \"%s\" is not an email!" %

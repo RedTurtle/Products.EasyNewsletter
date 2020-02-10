@@ -710,9 +710,10 @@ class ENLIssue(ATTopic, atapi.BaseContent):
                 continue
             member_property = member_properties[receiver_id]
             if EMAIL_RE.findall(member_property['email']):
-                salutation = salutation_mappings[
-                    member_property.get('gender', 'default')
-                ]
+                if 'default' not in salutation_mappings.keys():
+                    salutation_key = salutation_mappings.keys()[0]
+                salutation = salutation_mappings.get(salutation_key)
+
                 plone_subscribers.append({
                     'fullname': member_property['fullname'],
                     'email': member_property['email'],
