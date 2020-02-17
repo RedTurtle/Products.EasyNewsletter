@@ -1089,7 +1089,7 @@ msgstr "Organizzazione"
 #: ./skins/EasyNewsletter/aggregation_news_events_listing.pt:182
 #: ./skins/EasyNewsletter/aggregation_news_events_rich.pt:181
 msgid "read_more"
-msgstr ""
+msgstr "Leggi"
 
 #. Default: "Salutation"
 #: ./browser/enl_subscribers_view.pt:83
