@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-3.1.0-rt-1 (Unreleased)
+3.1.0-rt-1 (2020-11-23)
 -----------------------
 
 - Fix image paths generator in ENLHTMLParser.
