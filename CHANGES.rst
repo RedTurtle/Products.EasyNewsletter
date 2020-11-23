@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.1.0-rt-1 (Unreleased)
+-----------------------
+
+- Fix image paths generator in ENLHTMLParser.
+  [cekk]
+- Make a tag with all RT customizations.
+  [cekk]
+
 3.0.5 (2017-11-22)
 ------------------
 

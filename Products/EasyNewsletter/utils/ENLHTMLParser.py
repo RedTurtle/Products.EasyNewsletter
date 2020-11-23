@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
+from plone import api
 
 import HTMLParser
 import urllib
@@ -21,7 +22,7 @@ class ENLHTMLParser(HTMLParser.HTMLParser):
 
     def _encode(self, txt):
         if isinstance(txt, unicode):
-            plone_utils = getToolByName(self.context, 'plone_utils')
+            plone_utils = getToolByName(self.context, "plone_utils")
             encoding = plone_utils.getSiteEncoding()
             txt = txt.encode(encoding)
         return txt
@@ -37,17 +38,18 @@ class ENLHTMLParser(HTMLParser.HTMLParser):
                     # split anchor from url
                     baseurl, anchor = urlparse.urldefrag(attr[1])
                     o = self.context.restrictedTraverse(
-                        urllib.unquote(baseurl))
-                    if getattr(o, 'absolute_url', None):
+                        urllib.unquote(baseurl)
+                    )
+                    if getattr(o, "absolute_url", None):
                         url = o.absolute_url()
                     else:
                         # maybe we got a view instead of an traversal object:
-                        if getattr(o, 'context', None):
+                        if getattr(o, "context", None):
                             url = o.context.absolute_url()
                         else:
                             url = attr[1]
                     if anchor:
-                        url = '#' + anchor
+                        url = "#" + anchor
                 except Exception:
                     url = attr[1]
                 self.html += ' href="%s"' % self._encode(url)
@@ -88,10 +90,12 @@ class ENLHTMLParser(HTMLParser.HTMLParser):
                 if attr[1].startswith(self.context.portal_url()):
                     # content-id must be globaly unique!
                     self.html += ' src="cid:image_%s"' % image_content_id
-                    path = attr[1][len(self.context.portal_url()):]
-                    path = '/'.join(self.context.getPhysicalPath()) + path
+                    path = attr[1][len(self.context.portal_url()) :]
+                    # rotto, appende il path del contesto corrente all'immagine
+                    # path = "/".join(self.context.getPhysicalPath()) + path
+                    path = "/".join(api.portal.get().getPhysicalPath()) + path
                     self.image_urls.append((path, image_content_id))
-                elif 'http' in attr[1]:
+                elif "http" in attr[1]:
                     url = attr[1]
                     self.html += ' src="%s"' % self._encode(url)
                 else:
