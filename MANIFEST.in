@@ -4,3 +4,17 @@ graft Products
 graft docs
 
 global-exclude *.pyc
+
+exclude *.sh
+include *.txt
+exclude .coveragerc
+exclude .isort.cfg
+exclude base.cfg
+exclude coredev5.cfg
+exclude plone-4.3.x.cfg
+exclude plone-5.0.x.cfg
+exclude plone-5.1.x.cfg
+exclude test-plone-4.0.x.cfg
+exclude travis.cfg
+exclude versions-5.cfg
+exclude versions.cfg
